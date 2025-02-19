@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:3002',
+    apiUrl: '',
     endpoints: {
       products: {
         base: '/bp/products',
