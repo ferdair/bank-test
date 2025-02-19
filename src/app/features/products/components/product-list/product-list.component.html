@@ -1,1 +1,65 @@
-<p>product-list works!</p>
+<div class="container">
+    <div class="header-controls">
+      <div class="search-container">
+        <input 
+          type="text" 
+          [ngModel]="searchTerm()"
+          (ngModelChange)="updateSearch($event)"
+          placeholder="Search..." 
+          class="input-control"
+        />
+      </div>
+    </div>
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Logo</th>
+            <th>Nombre del producto</th>
+            <th>Descripción             <span class="info-icon"></span>
+            </th>
+            <th>Fecha de liberación             <span class="info-icon"></span>
+            </th>
+            <th>Fecha de reestructuración             <span class="info-icon"></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(product of filteredProducts(); track product.id) {
+            <tr>
+              <td>
+                <img [src]="product.logo" [alt]="product.name" class="table-image">
+              </td>
+              <td data-label="Nombre">{{ product.name }}</td>
+              <td data-label="Descripción">{{ product.description }}</td>
+              <td data-label="Fecha liberación">{{ product.date_release | date:'dd/MM/yyyy' }}</td>
+              <td data-label="Fecha revisión">{{ product.date_revision | date:'dd/MM/yyyy' }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="no-results">
+                No se encontraron productos
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      
+        <div class="results-control">
+          <span class="results-count">{{ totalResults() }} Resultados</span>
+          <div class="select-container">
+  
+          <select 
+            [ngModel]="pageSize()"
+            (ngModelChange)="updatePageSize($event)"
+            class="input-control"
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+        </div>
+    </div>
+   
+  </div>

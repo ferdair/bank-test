@@ -1,0 +1,50 @@
+.input-control {
+  width: 100%;
+  padding: var(--spacing-base) calc(var(--spacing-base) * 1.5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    padding: var(--spacing-base);
+  }
+}
+
+.select-container {
+  min-width: 80px;
+  width: auto;
+  position: relative;
+}
+
+.select-container .input-control {
+  width: 100%;
+  padding: var(--spacing-base) calc(var(--spacing-base) * 3) var(--spacing-base) var(--spacing-base);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  appearance: none;
+  background-color: white;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M1 4l5 5 5-5z' fill='%23999'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-base) center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  @media (max-width: 480px) {
+    padding: var(--spacing-base) calc(var(--spacing-base) * 3) var(--spacing-base) var(--spacing-base);
+    font-size: 16px; /* Previene zoom en iOS */
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+  }
+}

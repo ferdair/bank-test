@@ -1,0 +1,30 @@
+.header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: calc(var(--spacing-base) * 3);
+  gap: var(--spacing-base);
+}
+
+.search-container {
+  width: 200px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .header-controls {
+      flex-direction: column;
+      align-items: stretch;
+      gap: calc(var(--spacing-base) * 2);
+  }
+
+  .search-container {
+      width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-controls {
+      gap: var(--spacing-base);
+  }
+}

@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: calc(var(--spacing-base) * 3);
+
+  @media (min-width: 1200px) {
+      width: 100%;
+      padding: calc(var(--spacing-base) * 2);
+  }
+
+  @media (min-width: 1440px) {
+      width: 100%;
+      padding: calc(var(--spacing-base) * 1.5);
+  }
+}
