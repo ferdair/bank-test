@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ProductService } from '@core/services/product.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { ProductService } from '@core/services/product.service';
 })
 export class ProductListComponent implements OnInit {
   private productService = inject(ProductService);
+  private router = inject(Router);
 
   searchTerm = signal<string>('');
   pageSize = signal<number>(5);
@@ -41,6 +43,10 @@ export class ProductListComponent implements OnInit {
 
   updatePageSize(size: string) {
     this.pageSize.set(Number(size));
+  }
+
+  navigateToCreate() {
+    this.router.navigate(['/products/create']);
   }
 
 }

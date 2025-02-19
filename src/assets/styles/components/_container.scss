@@ -14,3 +14,13 @@
       padding: calc(var(--spacing-base) * 1.5);
   }
 }
+
+.container-sm {
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-base);
+  }
+}

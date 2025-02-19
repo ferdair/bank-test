@@ -4,7 +4,12 @@ export interface ProductResponse {
     data: Product[];
 }
 
-export interface ApiResponse {
+export interface ApiResponse<T> {
     message: string;
-    data?: any;
+    data: T;
 }
+
+export interface ProductCreateResponse {
+    message: string;
+    data: Product;
+  }
