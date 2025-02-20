@@ -95,7 +95,12 @@ export class ProductFormComponent implements OnInit{
   }
 
   resetForm() {
-    this.productForm.reset();
+    if(this.isEditMode){
+      const productId = this.route.snapshot.params['id'];
+      this.loadProduct(productId)
+    }else{
+       this.productForm.reset();
+    }
   }
 
   ngOnInit() {
