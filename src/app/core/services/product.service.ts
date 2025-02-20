@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Product, ProductCreateResponse, ProductResponse } from '@shared/models';
+import { ApiResponse, Product, ProductCreateResponse, ProductResponse } from '@shared/models';
 import { environment } from '@config/api.config';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
@@ -37,5 +37,20 @@ export class ProductService {
     return await firstValueFrom(
       this.http.get<boolean>(url)
     );
+  }
+
+  getProductById(id: string): Product | undefined {
+    const currentProduct = this.products().find(product => product.id === id)
+    return currentProduct
+  }
+
+  async updateProduct(id: string, product: Product): Promise<Product> {
+    const url = `${this.apiUrl}${this.endpoints.base}/${id}`;
+    const response = await firstValueFrom(
+      this.http.put<ProductCreateResponse>(url, product)
+    );
+    
+    this.loadProducts();
+    return response.data;
   }
 }

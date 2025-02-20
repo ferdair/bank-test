@@ -47,4 +47,10 @@
     border-color: var(--color-primary);
     box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
   }
+
+  &[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+  }
 }

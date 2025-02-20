@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { ProductFormService } from '../../services/product-form.service';
 import { ProductService } from '@services/product.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from '@core/services/notification.service';
 
 @Component({
   selector: 'app-product-form',
@@ -11,10 +12,14 @@ import { Router } from '@angular/router';
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './product-form.component.html'
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit{
   private formService = inject(ProductFormService);
   private productService = inject(ProductService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private notificationService = inject(NotificationService);
+
+  isEditMode = false;
 
   productForm = this.formService.createForm();
 
@@ -43,7 +48,6 @@ export class ProductFormComponent {
     return this.productForm.get('date_revision') as FormControl;
   }
 
-  // Getters para los errores
   get idError(): string | null {
     return this.idField.touched ? this.formService.getFieldError(this.productForm, 'id') : null;
   }
@@ -71,15 +75,45 @@ export class ProductFormComponent {
   async onSubmit() {
     if (this.productForm.valid) {
       try {
-        await this.productService.createProduct(this.productForm.value);
+        if (this.isEditMode) {
+          await this.productService.updateProduct(
+            this.route.snapshot.params['id'],
+            this.productForm.value
+          );
+          this.notificationService.showSuccess('Producto actualizado exitosamente');
+
+        } else {
+          await this.productService.createProduct(this.productForm.value);
+          this.notificationService.showSuccess('Producto creado exitosamente');
+        }
+        
         this.router.navigate(['/products']);
       } catch (error) {
-        // Manejar error
+        console.error('Error al guardar el producto:', error);
       }
     }
   }
 
   resetForm() {
     this.productForm.reset();
+  }
+
+  ngOnInit() {
+    // Obtener el ID del producto si estamos en modo edición
+    const productId = this.route.snapshot.params['id'];
+    if (productId) {
+      this.isEditMode = true;
+      this.loadProduct(productId);
+    }
+  }
+
+  private loadProduct(id: string) {
+    const product = this.productService.getProductById(id)
+    if (product){
+      this.idField.disable();
+      this.productForm.patchValue(product);
+    }
+      
+    
   }
 }

@@ -1,4 +1,4 @@
-.container {
+.content-wrapper {
   width: 100%;
   max-width: var(--container-width);
   margin: 0 auto;
@@ -15,12 +15,8 @@
   }
 }
 
-.container-sm {
-  max-width: 800px;
-}
-
 @media (max-width: 768px) {
-  .container {
+  .content-wrapper {
     padding: var(--spacing-base);
   }
 }

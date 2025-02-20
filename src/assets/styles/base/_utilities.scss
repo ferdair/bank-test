@@ -11,4 +11,21 @@
     background-repeat: no-repeat;
     background-size: contain;
     vertical-align: middle;
-  }
+}
+
+.divider {
+    height: 3px;
+    background-color: var(--color-border);
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.bg-white{
+    background-color: white;
+}
+
+.container-sm{
+    max-width: 800px;
+    margin: 0 auto; // Esto centrará el contenedor
+
+}

@@ -1,15 +1,29 @@
-.primary-button {
+button{
+  border: none;
+  padding: 20px 20px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius:var( --border-radius-buttons);
+  margin-left: auto;
+  font-weight: 600;
+
+  &.button-primary {
     background-color: var(--color-button-primary);
     color: var(--color-button-primary-text);
-    border: none;
-    padding: 20px 20px;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius:var( --border-radius-buttons);
-    margin-left: auto;
-    font-weight: 600;
-  }
-  
-  .primary-button:hover {
+   &:hover{
     background-color: var(--color-button-primary-hover);
+
+   }
   }
+
+  &.button-secondary {
+    background-color: var(--color-background-base);
+    color: var(--color-button-primary-text);
+   &:hover{
+    background-color: var(--color-button-primary-hover);
+
+   }
+  }
+}
+
+
