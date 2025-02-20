@@ -53,4 +53,13 @@ export class ProductService {
     this.loadProducts();
     return response.data;
   }
+
+  async deleteProduct(id: string): Promise<void> {
+    const url = `${this.apiUrl}${this.endpoints.base}/${id}`;
+    await firstValueFrom(
+      this.http.delete<void>(url)
+    );
+
+    this.loadProducts();
+  }
 }

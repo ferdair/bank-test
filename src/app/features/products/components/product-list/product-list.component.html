@@ -45,6 +45,9 @@
                     <button class="dropdown-item" (click)="editProduct(product.id)">
                       Editar
                     </button>
+                    <button class="dropdown-item" (click)="deleteProduct(product)">
+                      Eliminar
+                    </button>
                   </div>
                 </div>
               </td>
@@ -77,3 +80,5 @@
     </div>
    
   </div>
+<app-product-delete-modal [isOpen]="showDeleteModal" [productName]="selectedProduct?.name || ''"
+  (confirm)="confirmDelete()" (cancel)="cancelDelete()" />

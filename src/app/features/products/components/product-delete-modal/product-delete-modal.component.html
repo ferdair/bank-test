@@ -1,1 +1,24 @@
-<p>product-delete-modal works!</p>
+<div class="modal-overlay" *ngIf="isOpen">
+    <div class="modal">
+      <div class="modal-content">
+        <p>¿Estas seguro de eliminar el producto {{productName}}?</p>
+        
+        <div class="modal-actions">
+          <button 
+            type="button" 
+            class="button-secondary" 
+            (click)="onCancel()"
+          >
+            Cancelar
+          </button>
+          <button 
+            type="button" 
+            class="button-primary" 
+            (click)="onConfirm()"
+          >
+            Confirmar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
