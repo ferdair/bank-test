@@ -23,7 +23,6 @@ export class ProductFormComponent implements OnInit{
 
   productForm = this.formService.createForm();
 
-  // Getters para cada campo
   get idField(): FormControl {
     return this.productForm.get('id') as FormControl;
   }
@@ -77,7 +76,7 @@ export class ProductFormComponent implements OnInit{
       try {
         if (this.isEditMode) {
           await this.productService.updateProduct(
-            this.route.snapshot.params['id'],
+            this.route.snapshot.params['id'] || null,
             this.productForm.value
           );
           this.notificationService.showSuccess('Producto actualizado exitosamente');
@@ -96,7 +95,7 @@ export class ProductFormComponent implements OnInit{
 
   resetForm() {
     if(this.isEditMode){
-      const productId = this.route.snapshot.params['id'];
+      const productId = this.route.snapshot.params['id'] || null;;
       this.loadProduct(productId)
     }else{
        this.productForm.reset();
@@ -104,8 +103,7 @@ export class ProductFormComponent implements OnInit{
   }
 
   ngOnInit() {
-    // Obtener el ID del producto si estamos en modo edición
-    const productId = this.route.snapshot.params['id'];
+    const productId = this.route.snapshot.params['id'] || null;;
     if (productId) {
       this.isEditMode = true;
       this.loadProduct(productId);
